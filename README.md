@@ -51,16 +51,26 @@ All benchmarks were executed on an **AMD Radeon RX 7900 XTX** (24GB VRAM, RDNA3 
 
 ## ⚙️ Step-by-Step Installation
 
-Follow these instructions to set up and run AgentForge AI locally on your system.
+Follow these instructions to clone the repository and set up the system locally.
 
 ### Prerequisites
+- **Git** (to clone the project)
 - **Node.js** (v18+)
 - **Python** (v3.10+)
 - **Ollama** installed on your host system
 
 ---
 
-### Step 1: Install and Configure Ollama (Local LLM Server)
+### Step 1: Clone the Repository
+Open your terminal and run:
+```bash
+git clone https://github.com/VedantVH/agentforge-ai.git
+cd agentforge-ai
+```
+
+---
+
+### Step 2: Install and Configure Ollama (Local LLM Server)
 1. Download Ollama from [ollama.com](https://ollama.com).
 2. Pull the official Qwen3 8B instruct model:
    ```bash
@@ -74,7 +84,7 @@ Follow these instructions to set up and run AgentForge AI locally on your system
 
 ---
 
-### Step 2: Set Up and Start the Backend Server
+### Step 3: Set Up and Start the Backend Server
 1. Navigate to the backend directory:
    ```bash
    cd backend
@@ -96,7 +106,7 @@ Follow these instructions to set up and run AgentForge AI locally on your system
 
 ---
 
-### Step 3: Set Up and Start the Frontend Interface
+### Step 4: Set Up and Start the Frontend Interface
 1. Navigate to the frontend directory:
    ```bash
    cd ../frontend
