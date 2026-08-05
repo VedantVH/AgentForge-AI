@@ -64,7 +64,7 @@ Follow these instructions to clone the repository and set up the system locally.
 ### Step 1: Clone the Repository
 Open your terminal and run:
 ```bash
-git clone https://github.com/VedantVH/agentforge-ai.git
+https://github.com/VedantVH/AgentForge-AI.git
 cd agentforge-ai
 ```
 
