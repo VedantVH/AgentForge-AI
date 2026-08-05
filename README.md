@@ -1,6 +1,6 @@
 # 🚀 AgentForge AI: Private AI Operating System
 
-**Track 2 (Agentic AI) · Team Airflow · Vedant Vishwanath Honnangi · AMD Radeon Hackathon 2026**
+**Track 2 (Agentic AI) · Team AirFlow · Vedant Vishwanath Honnangi · AMD Radeon Hackathon 2026**
 
 > **AgentForge AI** is a private, local-first Multi-Agent AI Operating System built for the **AMD Radeon Hackathon 2026 (Track 2)**. Powered by **AMD Radeon GPUs** and **ROCm**, it combines intelligent reasoning, planning, long-term memory, RAG, dynamic agent orchestration, autonomous tool execution, and explainable AI workflows—all running completely offline without external AI APIs for a secure, high-performance AI experience.
 
