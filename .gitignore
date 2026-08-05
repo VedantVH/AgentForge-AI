@@ -1,0 +1,75 @@
+# Git ignore for AgentForge OS
+
+# ── Python ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Node / Next.js ─────────────────────────────────────
+node_modules/
+.next/
+.turbo/
+out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── AI Models ──────────────────────────────────────────
+*.gguf
+*.ggml
+*.bin
+*.safetensors
+*.pth
+*.pt
+models/weights/
+.ollama/
+
+# ── Databases ──────────────────────────────────────────
+*.db
+*.sqlite3
+*.sqlite
+chroma_db/
+chromadb_data/
+
+# ── Environment ────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.production
+
+# ── IDE / OS ───────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Logs ───────────────────────────────────────────────
+*.log
+logs/
+*.pid
+
+# ── Docker build artifacts ─────────────────────────────
+.dockerignore
+docker/data/
+
+# ── Temp / Scratch ─────────────────────────────────────
+tmp/
+temp/
+scratch/
+uploads/
