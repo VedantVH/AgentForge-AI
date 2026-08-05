@@ -27,9 +27,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AgentForge OS — Private AI Operating System | AMD Radeon",
+  title: "AgentForge AI — Private AI Operating System | AMD Radeon",
   description:
-    "AgentForge OS: The first local AI Operating System powered by AMD Radeon GPUs & ROCm 6.2. Multi-agent reasoning, planning, memory, and tool execution — 100% private.",
+    "AgentForge AI is a private, local-first Multi-Agent AI Operating System built for the AMD Radeon Hackathon 2026 (Track 2). Powered by AMD Radeon GPUs and ROCm, it combines intelligent reasoning, planning, long-term memory, RAG, dynamic agent orchestration, autonomous tool execution, and explainable AI workflows—all running completely offline without external AI APIs for a secure, high-performance AI experience.",
 };
 
 export default function RootLayout({

@@ -1,24 +1,17 @@
 # Project Specification Document
-## AgentForge OS — Private AI Operating System Powered by AMD Radeon GPUs
+## AgentForge AI — Private AI Operating System Powered by AMD Radeon GPUs
 
 **Track 2: Agentic AI — AMD Radeon Hackathon 2026**  
 **Submitted by**: Vedant Honnangi  
-**Project**: AgentForge OS  
+**Project**: AgentForge AI  
 
 ---
 
 ## 1. Executive Summary
 
-**AgentForge OS** is the world's first **Local AI Operating System** built on top of AMD Radeon GPUs using ROCm 6.2. It transcends the limitations of conventional AI chatbots by implementing a complete multi-agent reasoning and execution environment that:
+**AgentForge AI** is the world's first **Local AI Operating System** built on top of AMD Radeon GPUs using ROCm 6.2. It transcends the limitations of conventional AI chatbots by implementing a complete multi-agent reasoning and execution environment that:
 
-- **Reasons** through complex goals using a Cognitive Orchestrator
-- **Plans** by dynamically generating task-specific AI worker DAGs
-- **Remembers** using persistent long-term memory (SQLite + ChromaDB)
-- **Retrieves** knowledge locally via RAG over PDF documents
-- **Executes** real tools (Python sandbox, file analysis, web search)
-- **Debates** using multi-agent dialectic reasoning for bias elimination
-- **Verifies** outputs via a Trust Engine with self-reflection scoring
-- **Protects** privacy with 100% local inference, zero cloud APIs
+> **AgentForge AI** is a private, local-first Multi-Agent AI Operating System built for the **AMD Radeon Hackathon 2026 (Track 2)**. Powered by **AMD Radeon GPUs** and **ROCm**, it combines intelligent reasoning, planning, long-term memory, RAG, dynamic agent orchestration, autonomous tool execution, and explainable AI workflows—all running completely offline without external AI APIs for a secure, high-performance AI experience.
 
 All inference is executed locally on **AMD Radeon RX 7900 XTX (24 GB VRAM)** via **ROCm 6.2**, achieving **49.2 tokens/second** — a **7.9× speedup** over CPU inference.
 

@@ -384,8 +384,8 @@ export default function AgentForgeOS() {
         <AnimatePresence>
           {sidebarExpanded&&(
             <motion.div initial={{opacity:0,x:-8}} animate={{opacity:1,x:0}} exit={{opacity:0,x:-8}} transition={{duration:0.18}} className="overflow-hidden whitespace-nowrap">
-              <p className="font-heading font-bold text-sm text-white leading-none">AgentForge</p>
-              <p className="font-ai text-[9px] text-[#ED1C24] mt-0.5 uppercase tracking-widest">OS v3.0</p>
+              <p className="font-heading font-bold text-sm text-white leading-none">AgentForge AI</p>
+              <p className="font-ai text-[9px] text-[#ED1C24] mt-0.5 uppercase tracking-widest">v3.0</p>
             </motion.div>
           )}
         </AnimatePresence>

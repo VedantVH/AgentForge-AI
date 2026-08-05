@@ -1,8 +1,8 @@
-# 🚀 AgentForge OS — Private AI Operating System
+# 🚀 AgentForge AI — Private AI Operating System
 
 **Track 2 · Vedant Honnangi · AMD Radeon Hackathon 2026**
 
-> *"We didn't build a chatbot. We built an AI Operating System."*
+> **AgentForge AI** is a private, local-first Multi-Agent AI Operating System built for the **AMD Radeon Hackathon 2026 (Track 2)**. Powered by **AMD Radeon GPUs** and **ROCm**, it combines intelligent reasoning, planning, long-term memory, RAG, dynamic agent orchestration, autonomous tool execution, and explainable AI workflows—all running completely offline without external AI APIs for a secure, high-performance AI experience.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 [![ROCm](https://img.shields.io/badge/ROCm-6.2-red)](https://rocm.docs.amd.com)
@@ -13,7 +13,7 @@
 
 ## 💡 Overview
 
-**AgentForge OS** is a fully local, privacy-first **Multi-Agent AI Operating System** running on **AMD Radeon GPUs** via **ROCm 6.2**. Unlike conventional AI chatbots, AgentForge OS:
+**AgentForge AI** is a fully local, privacy-first **Multi-Agent AI Operating System** running on **AMD Radeon GPUs** via **ROCm 6.2**. Unlike conventional AI chatbots, AgentForge AI:
 
 - 🧠 **Thinks** — Cognitive Orchestrator decomposes goals into agent DAGs  
 - 📋 **Plans** — Dynamic worker pool generation per task type  
