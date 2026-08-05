@@ -2,7 +2,7 @@
 ## AgentForge AI — Private AI Operating System Powered by AMD Radeon GPUs
 
 **Track 2: Agentic AI — AMD Radeon Hackathon 2026**  
-**Submitted by**: Vedant Honnangi  
+**Submitted by**: Team Airflow (Vedant Vishwanath Honnangi)  
 **Project**: AgentForge AI  
 
 ---
