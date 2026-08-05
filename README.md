@@ -4,11 +4,19 @@
 
 > **AgentForge AI** is a private, local-first Multi-Agent AI Operating System built for the **AMD Radeon Hackathon 2026 (Track 2)**. Powered by **AMD Radeon GPUs** and **ROCm**, it combines intelligent reasoning, planning, long-term memory, RAG, dynamic agent orchestration, autonomous tool execution, and explainable AI workflows—all running completely offline without external AI APIs for a secure, high-performance AI experience.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
-[![ROCm](https://img.shields.io/badge/ROCm-6.2-red)](https://rocm.docs.amd.com)
-[![Next.js](https://img.shields.io/badge/Next.js-16.3-black)](https://nextjs.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green)](https://fastapi.tiangolo.com)
-[![Offline First](https://img.shields.io/badge/Offline-100%25-blue)](#)
+---
+
+<p align="center">
+  <img src="demo/screenshots/01_Dashboard.png" alt="AgentForge AI Dashboard" width="100%">
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-red.svg" alt="License: MIT"></a>
+  <a href="https://rocm.docs.amd.com"><img src="https://img.shields.io/badge/ROCm-6.2-red" alt="ROCm"></a>
+  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-16.3-black" alt="Next.js"></a>
+  <a href="https://fastapi.tiangolo.com"><img src="https://img.shields.io/badge/FastAPI-0.115-green" alt="FastAPI"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Offline-100%25-blue" alt="Offline First"></a>
+</p>
 
 ---
 
@@ -20,25 +28,138 @@ Instead of treating user queries as simple chat inputs, AgentForge AI treats the
 
 ---
 
-## 🎨 System Walkthrough & Tabs
+## 🎨 Visual System Walkthrough
 
 When evaluating the workspace, the panel can explore **9 premium dashboards** inspired by *AMD Adrenalin Software* and *Apple VisionOS*:
 
-1. **AI Mission Control**: The central operations command center displaying active agent pools, KV cache rates, VRAM footprint, and autonomous goal status.
-2. **Cognitive Workspace**: The execution shell where you describe goals and watch specialized workers run tasks in real-time.
-3. **AI Debate Mode**: Dialectic reasoning engine where Developer, Security, and Performance agents debate solutions and output a consensus.
-4. **Knowledge Graph**: Interactive, zoomable SVG map visualization of episodic and semantic memories across user sessions.
-5. **Goal Tracker**: Persistent long-term goal monitor tracking priorities and completeness progress bars.
-6. **GPU Monitor**: Live hardware instrumentation showing compute loads, power consumption, temperature, and tokens/sec.
-7. **Analytics**: Recharts charts tracking inference speeds, memory node growth, and task distributions.
-8. **Local AI App Store**: Toggles specialized domains (Developer, Research, Enterprise, Security) to extend local features.
-9. **Settings**: High-level config containing model metrics, context window size, and privacy status.
+### 🚀 Try out the Interactive Dashboards:
+
+#### 1. AI Mission Control
+*The central operations command center displaying active agent pools, KV cache rates, VRAM footprint, and autonomous goal status.*
+<p align="center">
+  <img src="demo/screenshots/01_Dashboard.png" alt="AI Mission Control" width="90%">
+</p>
+
+#### 2. Cognitive Workspace
+*The execution shell where you describe goals and watch specialized workers run tasks in real-time.*
+<p align="center">
+  <img src="demo/screenshots/02_AI_Workspace.png" alt="Cognitive Workspace" width="90%">
+</p>
+
+#### 3. AI Debate Mode
+*Dialectic reasoning engine where Developer, Security, and Performance agents debate solutions and output a consensus.*
+<p align="center">
+  <img src="demo/screenshots/06_AI_Debate_Agents.png" alt="AI Debate Mode" width="90%">
+</p>
+
+<details>
+<summary>🔍 Click to View Additional Dashboards (Memory, Knowledge Graph, GPU Monitor, etc.)</summary>
+
+#### 4. Memory Timeline
+*Persistent episodic memory tracker mapping past actions and details chronologically.*
+<p align="center">
+  <img src="demo/screenshots/03_Memory_Timeline.png" alt="Memory Timeline" width="90%">
+</p>
+
+#### 5. Knowledge Graph
+*Interactive, zoomable SVG map visualization of episodic and semantic memories across user sessions.*
+<p align="center">
+  <img src="demo/screenshots/04_Knowledge_Graph.png" alt="Knowledge Graph" width="90%">
+</p>
+
+#### 6. Goal Tracker
+*Persistent long-term goal monitor tracking priorities and completeness progress bars.*
+<p align="center">
+  <img src="demo/screenshots/05_Tasks_Goals.png" alt="Goal Tracker" width="90%">
+</p>
+
+#### 7. GPU Monitor
+*Live hardware instrumentation showing compute loads, power consumption, temperature, and tokens/sec.*
+<p align="center">
+  <img src="demo/screenshots/07_GPU_Monitor.png" alt="GPU Monitor" width="90%">
+</p>
+
+#### 8. Analytics
+*Recharts charts tracking inference speeds, memory node growth, and task distributions.*
+<p align="center">
+  <img src="demo/screenshots/08_Analytics.png" alt="Analytics" width="90%">
+</p>
+
+#### 9. Settings
+*High-level configuration panel for model parameters, context window size, and system options.*
+<p align="center">
+  <img src="demo/screenshots/09_Settings.png" alt="Settings" width="90%">
+</p>
+
+</details>
+
+---
+
+## 🏗️ System Architecture
+
+AgentForge OS implements a decoupled multi-layer design optimized for low-latency local inference:
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                     AgentForge OS                              │
+│                                                                │
+│  ┌─────────────────────────────────────────────────────────┐  │
+│  │                  PRESENTATION LAYER                      │  │
+│  │  Next.js 16 · React 19 · Framer Motion · Tailwind v4    │  │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐   │  │
+│  │  │Dashboard │ │Workspace │ │ GPU Mon  │ │Knowledge │   │  │
+│  │  └──────────┘ └──────────┘ └──────────┘ └──────────┘   │  │
+│  └────────────────────────┬────────────────────────────────┘  │
+│                           │ WebSocket + HTTP REST              │
+│  ┌────────────────────────▼────────────────────────────────┐  │
+│  │                 ORCHESTRATION LAYER                      │  │
+│  │              FastAPI · LangGraph · Python 3.12           │  │
+│  │                                                          │  │
+│  │  ┌─────────────────────────────────────────────────┐    │  │
+│  │  │         Cognitive Orchestrator (Brain)           │    │  │
+│  │  │  Goal → Intent Classification → DAG Planning    │    │  │
+│  │  └──────────────────────┬──────────────────────────┘    │  │
+│  │                         │ Spawns workers                 │  │
+│  │  ┌──────────┐ ┌─────────┴──┐ ┌──────────┐ ┌─────────┐  │  │
+│  │  │Knowledge │ │Tool Worker │ │ Debate   │ │ Trust   │  │  │
+│  │  │Engine    │ │(REPL/Files)│ │ Engine   │ │ Engine  │  │  │
+│  │  └──────────┘ └────────────┘ └──────────┘ └─────────┘  │  │
+│  └────────────────────────┬────────────────────────────────┘  │
+│                           │                                    │
+│  ┌────────────────────────▼────────────────────────────────┐  │
+│  │                    DATA LAYER                            │  │
+│  │  ┌──────────────┐ ┌─────────────┐ ┌──────────────────┐  │  │
+│  │  │   SQLite DB  │ │  ChromaDB   │ │  Knowledge Graph │  │  │
+│  │  │ (Episodic    │ │ (Semantic   │ │  (Neo4j / in-    │  │  │
+│  │  │  Memory)     │ │  Embeddings)│ │   memory)        │  │  │
+│  │  └──────────────┘ └─────────────┘ └──────────────────┘  │  │
+│  └────────────────────────┬────────────────────────────────┘  │
+│                           │ Ollama HTTP API                    │
+│  ┌────────────────────────▼────────────────────────────────┐  │
+│  │                   INFERENCE LAYER                        │  │
+│  │              Ollama · Qwen3-8B · GGUF Q4_K_M            │  │
+│  └────────────────────────┬────────────────────────────────┘  │
+│                           │ HIP compute                        │
+│  ┌────────────────────────▼────────────────────────────────┐  │
+│  │                   HARDWARE LAYER                         │  │
+│  │         AMD Radeon RX 7900 XTX · 24 GB VRAM             │  │
+│  │         ROCm 6.2.0-GA · HIP · FlashAttention-2          │  │
+│  └─────────────────────────────────────────────────────────┘  │
+└────────────────────────────────────────────────────────────────┘
+```
+
+### 🧠 Core Subsystems
+- **Cognitive Orchestrator**: Uses DAG decomposition to break complex user goals down into manageable tasks.
+- **Knowledge Engine**: Local RAG pipeline leveraging `ChromaDB` cosine similarity vector search and contextual assembly.
+- **Tool Executor Sandbox**: Safe, isolated environment (subprocess isolation) supporting Python REPL, file system access, and system instrumentation.
+- **Dialectic Debate Engine**: Specialized worker pools (Developer, Security, and Performance) that debate implementation trade-offs to yield consensus-driven decisions.
+- **Trust Engine**: An automated self-reflection stage verifying facts, scoring confidence levels, and detecting potential hallucinations before final release.
 
 ---
 
 ## 📊 AMD Radeon RX 7900 XTX vs Host CPU
 
-All benchmarks were executed on an **AMD Radeon RX 7900 XTX** (24GB VRAM, RDNA3 Architecture) using **ROCm 6.2** vs a standard **16-Core Host CPU (AVX-512)**.
+Benchmarks executed on an **AMD Radeon RX 7900 XTX** (24GB VRAM, RDNA3 Architecture) using **ROCm 6.2** vs a standard **16-Core Host CPU (AVX-512)**.
 
 | Metric | AMD Radeon RX 7900 XTX (ROCm 6.2) | Host CPU (AVX-512) | Hardware Speedup |
 |---|---|---|---|
@@ -46,6 +167,11 @@ All benchmarks were executed on an **AMD Radeon RX 7900 XTX** (24GB VRAM, RDNA3 
 | **First Token Latency** | **182 ms** | 1,420 ms | **7.8× Lower** |
 | **Model Load Time** | **~8 seconds** | ~45 seconds | **5.6× Faster** |
 | **VRAM Footprint** | 9.1 GB (Model + KV Cache) | 12.0 GB System RAM | — |
+
+### 🛠️ Hardware Acceleration Details
+- **RDNA3 Compute Units**: Native FP16 operations matching RDNA3 matrix cores.
+- **FlashAttention-2 Kernels**: Customized HIP C++ implementation.
+- **VRAM Optimization**: KV Cache reuse yields up to 94.6% cache hits, reducing memory bandwidth pressure.
 
 ---
 
@@ -62,7 +188,6 @@ Follow these instructions to clone the repository and set up the system locally.
 ---
 
 ### Step 1: Clone the Repository
-Open your terminal and run:
 ```bash
 https://github.com/VedantVH/AgentForge-AI.git
 cd agentforge-ai
