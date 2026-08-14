@@ -255,11 +255,3 @@ cd docker
 - Tool sandboxing uses subprocess isolation, not a full container/VM boundary — do not run untrusted code through it.
 - Tested primarily on RDNA3 (RX 7900 XTX); other Radeon GPUs are untested.
 
----
-
-## License
-MIT — see [LICENSE](LICENSE).
-
-## Author
-**Vedant Vishwanath Honnangi**
-[GitHub](https://github.com/VedantVH) · [LinkedIn](#) · [Email](#)
