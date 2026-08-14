@@ -29,8 +29,6 @@ AgentForge AI is a local-first, multi-agent AI system that runs entirely on **AM
 - [Demo Walkthrough](#demo-walkthrough-for-reviewers)
 - [Technology Stack](#technology-stack)
 - [Known Limitations](#known-limitations)
-- [License](#license)
-- [Author](#author)
 
 ---
 
