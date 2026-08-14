@@ -188,7 +188,7 @@ KV cache reuse achieved a 94.6% hit rate on the demo interview-prep workload.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/VedantVH/AgentForge-AI.git
+https://github.com/VedantVH/AgentForge-AI.git
 cd AgentForge-AI
 ```
 
