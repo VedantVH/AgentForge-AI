@@ -1,7 +1,7 @@
 # AgentForge AI — Private AI Operating System
 
 **AMD Radeon Hackathon 2026 · Track 2 (Agentic AI) · Team AirFlow**
-**Author:** Vedant Vishwanath Honnangi
+Built by [Vedant Vishwanath Honnangi](https://github.com/VedantVH)
 
 AgentForge AI is a local-first, multi-agent AI system that runs entirely on **AMD Radeon GPUs** via **ROCm**. Rather than treating a prompt as a single-shot completion, it treats a user request as a goal: it plans a task graph, spawns specialized worker agents, retrieves relevant local documents through RAG, and — where a decision has tradeoffs — runs a structured multi-agent debate before returning an answer. No prompt or document data leaves the machine during inference.
 
@@ -29,6 +29,7 @@ AgentForge AI is a local-first, multi-agent AI system that runs entirely on **AM
 - [Demo Walkthrough](#demo-walkthrough-for-reviewers)
 - [Technology Stack](#technology-stack)
 - [Known Limitations](#known-limitations)
+- [License](#license)
 
 ---
 
@@ -253,3 +254,7 @@ cd docker
 - Tool sandboxing uses subprocess isolation, not a full container/VM boundary — do not run untrusted code through it.
 - Tested primarily on RDNA3 (RX 7900 XTX); other Radeon GPUs are untested.
 
+---
+
+## License
+MIT — see [LICENSE](LICENSE).
