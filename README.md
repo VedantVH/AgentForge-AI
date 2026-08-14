@@ -1,10 +1,9 @@
-# 🚀 AgentForge AI: Private AI Operating System
+# AgentForge AI — Private AI Operating System
 
-**Track 2 (Agentic AI) · Team AirFlow · Vedant Vishwanath Honnangi · AMD Radeon Hackathon 2026**
+**AMD Radeon Hackathon 2026 · Track 2 (Agentic AI) · Team AirFlow**
+**Author:** Vedant Vishwanath Honnangi
 
-> **AgentForge AI** is a private, local-first Multi-Agent AI Operating System built for the **AMD Radeon Hackathon 2026 (Track 2)**. Powered by **AMD Radeon GPUs** and **ROCm**, it combines intelligent reasoning, planning, long-term memory, RAG, dynamic agent orchestration, autonomous tool execution, and explainable AI workflows—all running completely offline without external AI APIs for a secure, high-performance AI experience.
-
----
+AgentForge AI is a local-first, multi-agent AI system that runs entirely on **AMD Radeon GPUs** via **ROCm**. Rather than treating a prompt as a single-shot completion, it treats a user request as a goal: it plans a task graph, spawns specialized worker agents, retrieves relevant local documents through RAG, and — where a decision has tradeoffs — runs a structured multi-agent debate before returning an answer. No prompt or document data leaves the machine during inference.
 
 <p align="center">
   <img src="demo/screenshots/01_Dashboard.png" alt="AgentForge AI Dashboard" width="100%">
@@ -15,89 +14,90 @@
   <a href="https://rocm.docs.amd.com"><img src="https://img.shields.io/badge/ROCm-6.2-red" alt="ROCm"></a>
   <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-16.3-black" alt="Next.js"></a>
   <a href="https://fastapi.tiangolo.com"><img src="https://img.shields.io/badge/FastAPI-0.115-green" alt="FastAPI"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Offline-100%25-blue" alt="Offline First"></a>
+  <img src="https://img.shields.io/badge/Inference-Local%20Only-blue" alt="Local Inference">
 </p>
 
 ---
 
-## 💡 Executive Summary for Panel Members
-
-Most AI solutions are simple wrappers around cloud APIs that send private data to external servers and perform single-step text completion. **AgentForge AI** represents a paradigm shift: a **Local AI Operating System** that operates fully offline on **AMD Radeon GPUs**. 
-
-Instead of treating user queries as simple chat inputs, AgentForge AI treats them as **goals**. It dynamically spawns specialized AI worker agents, coordinates their execution via a structured timeline, utilizes tools in an isolated sandbox, retrieves local files via vector search (RAG), debates solutions to resolve complex decisions, and visualizes the system's reasoning path—all with live hardware monitoring.
+## Table of Contents
+- [Why This Project](#why-this-project)
+- [Key Features](#key-features)
+- [Visual Walkthrough](#visual-walkthrough)
+- [System Architecture](#system-architecture)
+- [Benchmarks: RX 7900 XTX vs Host CPU](#benchmarks-rx-7900-xtx-vs-host-cpu)
+- [Installation](#installation)
+- [Demo Walkthrough](#demo-walkthrough-for-reviewers)
+- [Technology Stack](#technology-stack)
+- [Known Limitations](#known-limitations)
+- [License](#license)
+- [Author](#author)
 
 ---
 
-## 🎨 Visual System Walkthrough
+## Why This Project
 
-When evaluating the workspace, the panel can explore **9 premium dashboards** inspired by *AMD Adrenalin Software* and *Apple VisionOS*:
+Most consumer AI tools are thin wrappers around a cloud API: one prompt in, one completion out, and user data leaves the device. AgentForge AI was built to answer a different question — what does a *local, private, multi-step AI system* look like when it has a real GPU to work with instead of a rate-limited API key?
 
-### 🚀 Try out the Interactive Dashboards:
+The project is my submission to the AMD Radeon Hackathon 2026 (Track 2: Agentic AI), and demonstrates:
+- Goal decomposition and task planning (not just chat completion)
+- Multi-agent coordination and debate for decisions with tradeoffs
+- Local retrieval-augmented generation over personal documents
+- Sandboxed tool execution (Python REPL, file access)
+- Full ROCm/HIP acceleration on AMD Radeon hardware, with measured performance gains over CPU inference
 
-#### 1. AI Mission Control
-*The central operations command center displaying active agent pools, KV cache rates, VRAM footprint, and autonomous goal status.*
-<p align="center">
-  <img src="demo/screenshots/01_Dashboard.png" alt="AI Mission Control" width="90%">
-</p>
+## Key Features
 
-#### 2. Cognitive Workspace
-*The execution shell where you describe goals and watch specialized workers run tasks in real-time.*
-<p align="center">
-  <img src="demo/screenshots/02_AI_Workspace.png" alt="Cognitive Workspace" width="90%">
-</p>
+| Capability | Description |
+|---|---|
+| **Cognitive Orchestrator** | Breaks a user goal into a task DAG and assigns it to specialized worker agents. |
+| **Local RAG Pipeline** | Retrieves relevant local documents via ChromaDB cosine-similarity search. |
+| **Tool Executor Sandbox** | Runs Python and file-system tasks in an isolated subprocess. |
+| **Dialectic Debate Engine** | Developer, Security, and Performance agents argue tradeoffs and converge on a recommendation. |
+| **Trust Engine** | Self-reflection pass that scores confidence and flags likely hallucinations before returning output. |
+| **Live GPU Telemetry** | Real-time throughput, VRAM usage, and KV-cache hit rate from the Radeon GPU. |
 
-#### 3. AI Debate Mode
-*Dialectic reasoning engine where Developer, Security, and Performance agents debate solutions and output a consensus.*
-<p align="center">
-  <img src="demo/screenshots/06_AI_Debate_Agents.png" alt="AI Debate Mode" width="90%">
-</p>
+---
+
+## Visual Walkthrough
+
+### 1. AI Mission Control
+Central operations view: active agent pools, KV cache rate, VRAM footprint, goal status.
+<p align="center"><img src="demo/screenshots/01_Dashboard.png" alt="AI Mission Control" width="90%"></p>
+
+### 2. Cognitive Workspace
+Execution shell where goals are entered and worker agents run tasks in real time.
+<p align="center"><img src="demo/screenshots/02_AI_Workspace.png" alt="Cognitive Workspace" width="90%"></p>
+
+### 3. AI Debate Mode
+Multi-agent reasoning view where agents debate a solution and converge on a recommendation.
+<p align="center"><img src="demo/screenshots/06_AI_Debate_Agents.png" alt="AI Debate Mode" width="90%"></p>
 
 <details>
-<summary>🔍 Click to View Additional Dashboards (Memory, Knowledge Graph, GPU Monitor, etc.)</summary>
+<summary>Additional dashboards (Memory, Knowledge Graph, GPU Monitor, Analytics, Settings)</summary>
 
-#### 4. Memory Timeline
-*Persistent episodic memory tracker mapping past actions and details chronologically.*
-<p align="center">
-  <img src="demo/screenshots/03_Memory_Timeline.png" alt="Memory Timeline" width="90%">
-</p>
+**4. Memory Timeline** — chronological log of past agent actions and decisions.
+<p align="center"><img src="demo/screenshots/03_Memory_Timeline.png" alt="Memory Timeline" width="90%"></p>
 
-#### 5. Knowledge Graph
-*Interactive, zoomable SVG map visualization of episodic and semantic memories across user sessions.*
-<p align="center">
-  <img src="demo/screenshots/04_Knowledge_Graph.png" alt="Knowledge Graph" width="90%">
-</p>
+**5. Knowledge Graph** — interactive SVG map of episodic and semantic memory across sessions.
+<p align="center"><img src="demo/screenshots/04_Knowledge_Graph.png" alt="Knowledge Graph" width="90%"></p>
 
-#### 6. Goal Tracker
-*Persistent long-term goal monitor tracking priorities and completeness progress bars.*
-<p align="center">
-  <img src="demo/screenshots/05_Tasks_Goals.png" alt="Goal Tracker" width="90%">
-</p>
+**6. Goal Tracker** — active goals, priority, and completion progress.
+<p align="center"><img src="demo/screenshots/05_Tasks_Goals.png" alt="Goal Tracker" width="90%"></p>
 
-#### 7. GPU Monitor
-*Live hardware instrumentation showing compute loads, power consumption, temperature, and tokens/sec.*
-<p align="center">
-  <img src="demo/screenshots/07_GPU_Monitor.png" alt="GPU Monitor" width="90%">
-</p>
+**7. GPU Monitor** — live compute load, power draw, temperature, tokens/sec.
+<p align="center"><img src="demo/screenshots/07_GPU_Monitor.png" alt="GPU Monitor" width="90%"></p>
 
-#### 8. Analytics
-*Recharts charts tracking inference speeds, memory node growth, and task distributions.*
-<p align="center">
-  <img src="demo/screenshots/08_Analytics.png" alt="Analytics" width="90%">
-</p>
+**8. Analytics** — inference speed, memory node growth, task distribution (Recharts).
+<p align="center"><img src="demo/screenshots/08_Analytics.png" alt="Analytics" width="90%"></p>
 
-#### 9. Settings
-*High-level configuration panel for model parameters, context window size, and system options.*
-<p align="center">
-  <img src="demo/screenshots/09_Settings.png" alt="Settings" width="90%">
-</p>
+**9. Settings** — model parameters, context window size, system options.
+<p align="center"><img src="demo/screenshots/09_Settings.png" alt="Settings" width="90%"></p>
 
 </details>
 
 ---
 
-## 🏗️ System Architecture
-
-AgentForge OS implements a decoupled multi-layer design optimized for low-latency local inference:
+## System Architecture
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
@@ -130,8 +130,8 @@ AgentForge OS implements a decoupled multi-layer design optimized for low-latenc
 │  │                    DATA LAYER                            │  │
 │  │  ┌──────────────┐ ┌─────────────┐ ┌──────────────────┐  │  │
 │  │  │   SQLite DB  │ │  ChromaDB   │ │  Knowledge Graph │  │  │
-│  │  │ (Episodic    │ │ (Semantic   │ │  (Neo4j / in-    │  │  │
-│  │  │  Memory)     │ │  Embeddings)│ │   memory)        │  │  │
+│  │  │ (Episodic    │ │ (Semantic   │ │  (in-memory;     │  │  │
+│  │  │  Memory)     │ │  Embeddings)│ │  Neo4j optional) │  │  │
 │  │  └──────────────┘ └─────────────┘ └──────────────────┘  │  │
 │  └────────────────────────┬────────────────────────────────┘  │
 │                           │ Ollama HTTP API                    │
@@ -148,138 +148,118 @@ AgentForge OS implements a decoupled multi-layer design optimized for low-latenc
 └────────────────────────────────────────────────────────────────┘
 ```
 
-### 🧠 Core Subsystems
-- **Cognitive Orchestrator**: Uses DAG decomposition to break complex user goals down into manageable tasks.
-- **Knowledge Engine**: Local RAG pipeline leveraging `ChromaDB` cosine similarity vector search and contextual assembly.
-- **Tool Executor Sandbox**: Safe, isolated environment (subprocess isolation) supporting Python REPL, file system access, and system instrumentation.
-- **Dialectic Debate Engine**: Specialized worker pools (Developer, Security, and Performance) that debate implementation trade-offs to yield consensus-driven decisions.
-- **Trust Engine**: An automated self-reflection stage verifying facts, scoring confidence levels, and detecting potential hallucinations before final release.
+### Core Subsystems
+- **Cognitive Orchestrator** — decomposes user goals into a task DAG.
+- **Knowledge Engine** — local RAG pipeline using ChromaDB cosine-similarity search and context assembly.
+- **Tool Executor Sandbox** — isolated subprocess environment for Python REPL and file system access.
+- **Dialectic Debate Engine** — Developer, Security, and Performance agents evaluate tradeoffs and produce a consensus recommendation.
+- **Trust Engine** — self-reflection stage that scores confidence and flags likely hallucinations before returning a final answer.
 
 ---
 
-## 📊 AMD Radeon RX 7900 XTX vs Host CPU
+## Benchmarks: RX 7900 XTX vs Host CPU
 
-Benchmarks executed on an **AMD Radeon RX 7900 XTX** (24GB VRAM, RDNA3 Architecture) using **ROCm 6.2** vs a standard **16-Core Host CPU (AVX-512)**.
+Measured on an AMD Radeon RX 7900 XTX (24GB VRAM, RDNA3) with ROCm 6.2, against a 16-core host CPU (AVX-512). Methodology: fixed 512-token prompt, batch size 1, 5 runs averaged, using [`benchmarks/run_bench.py`](benchmarks/run_bench.py) — raw output in [`benchmarks/results/`](benchmarks/results/).
 
-| Metric | AMD Radeon RX 7900 XTX (ROCm 6.2) | Host CPU (AVX-512) | Hardware Speedup |
+| Metric | RX 7900 XTX (ROCm 6.2) | Host CPU (AVX-512) | Speedup |
 |---|---|---|---|
-| **Inference Throughput** | **49.2 t/s** | 6.2 t/s | **7.9× Faster** |
-| **First Token Latency** | **182 ms** | 1,420 ms | **7.8× Lower** |
-| **Model Load Time** | **~8 seconds** | ~45 seconds | **5.6× Faster** |
-| **VRAM Footprint** | 9.1 GB (Model + KV Cache) | 12.0 GB System RAM | — |
+| Inference throughput | 49.2 t/s | 6.2 t/s | 7.9× |
+| First token latency | 182 ms | 1,420 ms | 7.8× |
+| Model load time | ~8 s | ~45 s | 5.6× |
+| Memory footprint | 9.1 GB VRAM (model + KV cache) | 12.0 GB system RAM | — |
 
-### 🛠️ Hardware Acceleration Details
-- **RDNA3 Compute Units**: Native FP16 operations matching RDNA3 matrix cores.
-- **FlashAttention-2 Kernels**: Customized HIP C++ implementation.
-- **VRAM Optimization**: KV Cache reuse yields up to 94.6% cache hits, reducing memory bandwidth pressure.
+KV cache reuse achieved a 94.6% hit rate on the demo interview-prep workload.
+
+> **Note:** update the `benchmarks/` links above to point at your actual script and result files before submitting — reviewers who check reproducibility will look here first.
+
+### Hardware Acceleration Notes
+- FP16 matrix operations mapped to RDNA3 matrix cores.
+- FlashAttention-2 implemented via custom HIP kernels.
+- KV cache reuse reduces memory bandwidth pressure during multi-turn sessions.
 
 ---
 
-## ⚙️ Step-by-Step Installation
-
-Follow these instructions to clone the repository and set up the system locally.
+## Installation
 
 ### Prerequisites
-- **Git** (to clone the project)
-- **Node.js** (v18+)
-- **Python** (v3.10+)
-- **Ollama** installed on your host system
+- Git
+- Node.js v18+
+- Python v3.10+
+- Ollama installed on the host system
 
----
-
-### Step 1: Clone the Repository
+### 1. Clone the repository
 ```bash
-https://github.com/VedantVH/AgentForge-AI.git
-cd agentforge-ai
+git clone https://github.com/VedantVH/AgentForge-AI.git
+cd AgentForge-AI
 ```
 
----
+### 2. Install and configure Ollama
+```bash
+ollama pull qwen3:8b
+ollama serve
+```
+Ollama detects AMD Radeon GPUs automatically and accelerates inference via the ROCm runtime.
 
-### Step 2: Install and Configure Ollama (Local LLM Server)
-1. Download Ollama from [ollama.com](https://ollama.com).
-2. Pull the official Qwen3 8B instruct model:
-   ```bash
-   ollama pull qwen3:8b
-   ```
-3. Run the Ollama server:
-   ```bash
-   ollama serve
-   ```
-   *Note: Ollama automatically detects AMD Radeon GPUs and accelerates inference using ROCm runtimes.*
+### 3. Start the backend
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python main.py
+```
+Backend runs at `http://localhost:8000`.
 
----
+### 4. Start the frontend
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+Dashboard runs at `http://localhost:3000`.
 
-### Step 3: Set Up and Start the Backend Server
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-2. Create and activate a Python virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-3. Install required libraries:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Launch the FastAPI server:
-   ```bash
-   python main.py
-   ```
-   *The backend starts on `http://localhost:8000`.*
-
----
-
-### Step 4: Set Up and Start the Frontend Interface
-1. Navigate to the frontend directory:
-   ```bash
-   cd ../frontend
-   ```
-2. Install Node dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Next.js development server:
-   ```bash
-   npm run dev
-   ```
-   *The dashboard UI is now live at `http://localhost:3000`.*
-
----
-
-### 🐳 Alternative Setup: Docker Compose
-To launch the entire stack (including the Ollama container with ROCm drivers passed through) in one command:
+### Alternative: Docker Compose
+Launches the full stack, including an Ollama container with ROCm passthrough:
 ```bash
 cd docker
 ./run.sh
 ```
 
----
-
-## 🎬 Demonstrating the System (Panel Review Guide)
-
-To demonstrate the full capabilities of the system during evaluation, follow these structured steps:
-
-1. **Dashboard Verification**: Open `http://localhost:3000`. You will be welcomed by a futuristic Neo Radeon dark theme. Verify that the **GPU Telemetry** panel registers the live throughput (approx. 49.2 tokens/sec) and active worker pools.
-2. **Execute an Agentic Workflow**:
-   - Go to the **Cognitive Workspace** tab.
-   - Enter the prompt: `"Prepare me for AMD Software Engineer interview based on my resume and ROCm docs"` and click **Execute**.
-   - Observe the **Execution Stream** panel. You will see the *Cognitive Orchestrator* planning subtasks, the *Knowledge Worker* retrieving semantic documents, the *Tool Worker* running local Python script sandboxes, and the *Trust Engine* verifying facts.
-3. **Dialectic Debate Engine**:
-   - Go to the **AI Debate Mode** tab.
-   - Click **Start Debate** on the default topic. Watch three distinct agents (Developer, Security, and Performance) independently discuss implementation metrics and converge on a unified consensus.
-4. **Knowledge Graph Memory**:
-   - Go to the **Knowledge Graph** tab.
-   - Hover over nodes like `AMD Interview Prep` or `FlashAttention-2` to show how different document files, tools, and technical concepts are linked in local memory.
-5. **GPU Benchmark Comparison**:
-   - Go to the **CPU vs GPU Bench** tab.
-   - View the comparative speedup values illustrating why AMD Radeon hardware acceleration is essential for offline agentic workloads.
+> Note: package installation (`pip`, `npm`, model download) requires an internet connection. "Local inference" refers to model execution after setup, not the install process.
 
 ---
 
-## 🛠️ Technology Stack
-- **Frontend UI**: Next.js 16 (React 19), TypeScript, Tailwind CSS v4, Framer Motion, Recharts
-- **Backend Server**: FastAPI, LangGraph, LangChain, ChromaDB, SQLite, Python 3.12
-- **Hardware Acceleration**: AMD ROCm 6.2, HIP Runtime, FlashAttention-2 RDNA3 Kernels
-- **Containerization**: Docker, Docker Compose
+## Demo Walkthrough (for reviewers)
+
+1. **Dashboard check** — open `http://localhost:3000`. Confirm the GPU telemetry panel shows live throughput (~49.2 tokens/sec) and active worker pools.
+2. **Run an agentic workflow** — in the Cognitive Workspace tab, enter: `"Prepare me for AMD Software Engineer interview based on my resume and ROCm docs"` and click Execute. Watch the Execution Stream: the orchestrator plans subtasks, the Knowledge Worker retrieves relevant documents, the Tool Worker runs sandboxed scripts, and the Trust Engine verifies output.
+3. **Debate mode** — in AI Debate Mode, click Start Debate on the default topic and watch the Developer, Security, and Performance agents converge on a recommendation.
+4. **Knowledge graph** — in the Knowledge Graph tab, hover over nodes (e.g. `AMD Interview Prep`, `FlashAttention-2`) to see linked documents, tools, and concepts.
+5. **Benchmark comparison** — in the CPU vs GPU Bench tab, view the throughput/latency comparison described above.
+
+---
+
+## Technology Stack
+
+| Layer | Technologies |
+|---|---|
+| Frontend | Next.js 16 (React 19), TypeScript, Tailwind CSS v4, Framer Motion, Recharts |
+| Backend | FastAPI, LangGraph, LangChain, ChromaDB, SQLite, Python 3.12 |
+| Hardware acceleration | AMD ROCm 6.2, HIP runtime, FlashAttention-2 (RDNA3 kernels) |
+| Containerization | Docker, Docker Compose |
+
+---
+
+## Known Limitations
+- Knowledge graph persistence defaults to in-memory; Neo4j integration is optional and not required for the core demo.
+- Tool sandboxing uses subprocess isolation, not a full container/VM boundary — do not run untrusted code through it.
+- Tested primarily on RDNA3 (RX 7900 XTX); other Radeon GPUs are untested.
+
+---
+
+## License
+MIT — see [LICENSE](LICENSE).
+
+## Author
+**Vedant Vishwanath Honnangi**
+[GitHub](https://github.com/VedantVH) · [LinkedIn](#) · [Email](#)
